@@ -136,6 +136,17 @@ String.prototype.grammarPolice = function() {
 // In all other cases, return "Different values"
 
 // CODE HERE...
+//if else, compare 2 parameters using triple and double equal signs
+
+function valueType(param1, param2) {
+  if (param1 === param2) {
+    return "Exactly the same";
+  } else if (param1 == param2) {
+    return "Same value, different types";
+  } else {
+    return "Different values";
+  }
+}
 
 // *************
 // * PROBLEM 5 *
@@ -149,3 +160,7 @@ String.prototype.grammarPolice = function() {
 var theAnswer = "Unknown";
 
 // CODE HERE...
+
+function promiseCatcher(param1) {
+  param1.then(response => (theAnswer = response));
+}
