@@ -34,20 +34,28 @@
 // In the second .then function you use, assign the third user object
 // to the variable 'thirdUser' (previously declared) and then return the tenth user object.
 
-var firstUser = 'don\'t touch this string!';
-var thirdUser = 'don\'t touch this string, either!';
+var firstUser = "don't touch this string!";
+var thirdUser = "don't touch this string, either!";
 
 function noWeakLink() {
-
-  return $http({
-    method: 'GET',
-    url: '/api/users'
-  })
-  // CODE HERE...
-
+  return (
+    $http({
+      method: "GET",
+      url: "/api/users"
+    })
+      // CODE HERE...
+      //it is response.data bc if you look at the response above, it is returned in an array called data
+      .then(response => {
+        firstUser = response.data[0];
+        return response;
+      })
+      .then(response => {
+        //index 2 is third object, index 9 is 10th obj
+        thirdUser = response.data[2];
+        return response.data[9];
+      })
+  );
 }
-
-
 
 // *************
 // * PROBLEM 2 *
@@ -67,16 +75,13 @@ function noWeakLink() {
 // 'My name is Horton and I am very heavy!' (The above instructions should make this work.  No code needed for this paragraph)
 
 var elephant = {
-  name: 'Horton'
-}
+  name: "Horton"
+};
 function large() {
-
-  return 'My name is ' + this.name + ' and I am very heavy!'
+  return "My name is " + this.name + " and I am very heavy!";
 }
 // CODE HERE...
-
-
-
+var boundToElephant = large.bind(elephant);
 // *************
 // * PROBLEM 3 *
 // *************
@@ -88,9 +93,10 @@ function large() {
 // and return the bound function.
 
 // CODE HERE...
-
-
-
+function deathStar(capacity, crew) {
+  capacity = capacity.bind(crew);
+  return capacity;
+}
 // *************
 // * PROBLEM 4 *
 // *************
@@ -104,8 +110,13 @@ function large() {
 
 // CODE HERE...
 
-
-
+function accountingOffice(assets) {
+  function closure(liabilities) {
+    return assets + liabilities;
+  }
+  closure();
+}
+accountingOffice();
 // *************
 // * PROBLEM 5 *
 // *************
@@ -128,9 +139,13 @@ function large() {
 // };
 
 // CODE HERE...
-
-
-
+function forgetter(name) {
+  let items = [];
+  return function rememberall(item) {
+    items.push(item);
+    return { name: name, remember: items };
+  };
+}
 // *************
 // * PROBLEM 6 *
 // *************
@@ -156,3 +171,7 @@ function large() {
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
 // CODE HERE...
+function frodo(startingHungerValue, startingDangerValue) {
+  let hungervalue = startingHungerValue;
+  let dangervalue = startingDangerValue;
+}
