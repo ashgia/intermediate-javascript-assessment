@@ -110,13 +110,11 @@ function deathStar(capacity, crew) {
 
 // CODE HERE...
 
-function accountingOffice(assets) {
-  function closure(liabilities) {
+let accountingOffice = assets => {
+  return liabilities => {
     return assets + liabilities;
-  }
-  closure();
-}
-accountingOffice();
+  };
+};
 // *************
 // * PROBLEM 5 *
 // *************
